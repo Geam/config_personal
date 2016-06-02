@@ -49,4 +49,9 @@ if [[ -n $SCHOOL42 ]]; then
     mkdir ~/Library/Fonts
     ./install.sh
     open /Applications/Font\ Book.app
+
+    # add qwerty-fr layout
+    curl -0 http://marin.jb.free.fr/qwerty-fr/qwerty-fr_mac.tgz > $HOME/Downloads/qwerty-fr_mac.tgz
+    mkdir $HOME/Library/Keyborad\ Layouts
+    tar xzf $HOME/Downloads/qwerty-fr_mac.tgz -C $HOME/Library/Keyborad\ Layouts
 fi
