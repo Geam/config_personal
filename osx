@@ -15,7 +15,7 @@ defaults write com.apple.dock persistent-apps -array-add '<dict><key>tile-data</
 defaults write com.apple.dock tilesize -int 40
 
 # set the dock on the right of the screen
-defaults write com.apple.dock orientation -string right
+defaults write com.apple.dock orientation -string "right"
 
 # do not rearrange space based on recent use
 defaults write com.apple.dock mru-spaces -bool false
@@ -28,14 +28,26 @@ killall Dock
 ### finder ###
 
 # set preferred view style
-defaults write com.apple.finder FXPreferredViewStyle clmv
+defaults write com.apple.finder FXPreferredViewStyle -string "clmv"
+
+# New window points to home
+defaults write com.apple.finder NewWindowTarget -string "PfHm"
+
+# Avoid creating .DS_Store files on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+
+# show path bar
+defaults write com.apple.finder ShowPathbar -int 1
+
+# show Library folder
+chflags nohidden ~/Library/
 
 ### finder end ###
 
 ### mouse ###
 
 # scroll not "natural"
-defaults write com.apple.swipescrolldirection -bool FALSE
+defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
 ### mouse end ###
 
@@ -72,5 +84,12 @@ defaults write com.apple.spotlight orderedItems -array \
 
 # display hour in 24h format
 defaults write com.apple.menuextra.clock DateFormat -string "EEE dd/MM/yyyy HH:mm"
+defaults write NSGlobalDomain AppleICUForce12HourTime -bool false
 
 ### menu bar end ###
+
+### security ###
+
+defaults write com.apple.screensaver askForPassword -int 1
+
+### security end ###
