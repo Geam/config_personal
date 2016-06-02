@@ -23,6 +23,10 @@ fi
 cd $CONFIG_VIM
 mkdir $CONFIG_VIM/tmp
 
+# add neovim python support
+pip3 install --user neovim
+pip2 install --user neovim
+
 if [[ "$USER" != "geam" ]] && [[ "$USER" != "mdelage" ]]; then
     # remove my git config if it's not me
     sed -i.back '/git/d' $PERS_PATH/ln
@@ -37,10 +41,12 @@ if [[ -n $SCHOOL42 ]]; then
     mkdir $HOME/bin
 
     # add exa
-    curl -0 https://github.com/ogham/exa/releases/download/v0.4.0/exa-osx-x86_64.zip > $HOME/exa-osx-x86_64.zip
-    unzip $HOME/exa-osx-x86_64.zip
+    target=exa-osx-x86_64.zip
+    curl -0 https://the.exa.website/releases/exa-0.4-osx-x86_64.zip > $HOME/$target
+    unzip $HOME/$target
     mv exa-osx-x86_64 $HOME/bin/exa
-    rm exa-osx-x86_64.zip
+    rm $target
+    unset target
 
     # add font for osx
     cd
