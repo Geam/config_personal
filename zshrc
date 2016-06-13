@@ -3,6 +3,8 @@ bindkey '^R' history-incremental-search-backward
 bindkey -e
 export LC_ALL=en_US.UTF-8
 
+bindkey -v
+
 # default editor
 editor=`which nvim 2> /dev/null`
 if [[ "$?" -eq 0 ]]
@@ -61,3 +63,19 @@ if [[ -n $C_SCHOOL ]]; then
         chmod 700 $OHOME
     fi
 fi
+
+cpb()
+{
+    if [[ -z $1 ]] || [[ -z $2 ]]; then
+        echo "Usage: cpb source destination"
+        echo "Note that the source can be a directory or a file"
+    fi
+    if [[ -d $1 ]]; then
+        if [[ ! -d $2 ]]; then
+            mkdir $2
+        fi
+        (cd $1 && tar -cf - *) | bar -s $(du -sk $1 | cut -f 1)k -dan | (cd $2 && tar -xBpf -)
+    elif [[ -f $1 ]]; then
+        bar -if $1 -of $2 -dan
+    fi
+}
