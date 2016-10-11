@@ -26,11 +26,6 @@ if [[ $? == 0 ]]; then
     alias lt="ll --tree"
 fi
 
-which nvim 2>&1 > /dev/null
-if [[ $? == 0 ]]; then
-    alias vim=nvim
-fi
-
 # School only aliases
 if [[ -n $C_SCHOOL ]]; then
     # misc
